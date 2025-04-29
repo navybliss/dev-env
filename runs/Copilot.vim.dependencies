@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Install Node.js (and npm) using NodeSource repository
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Check if Node.js and npm were installed correctly
+if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
+  echo "Error: Node.js or npm could not be installed."
+  exit 1
+fi
+
+# Check if we are using bash or zsh
+if [ -n "$BASH_VERSION" ]; then
+  SHELL_CONFIG="$HOME/.bashrc"
+elif [ -n "$ZSH_VERSION" ]; then
+  SHELL_CONFIG="$HOME/.zshrc"
+else
+  echo "Unsupported shell. Exiting."
+  exit 1
+fi
+
+# Get the path where node is installed
+NODE_PATH=$(which node)
+
+# Check if the line already exists in the shell config
+if ! grep -q "$NODE_PATH" "$SHELL_CONFIG"; then
+  echo "export PATH=\$PATH:$NODE_PATH" >> "$SHELL_CONFIG"
+  echo "Node.js path added to $SHELL_CONFIG"
+else
+  echo "Node.js path is already in $SHELL_CONFIG"
+fi
+
+# Inform the user to source the shell config file
+echo "Please run the following command to apply the changes:"
+echo "source $SHELL_CONFIG"
+
+exit 0
+
