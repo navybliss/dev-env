@@ -13,22 +13,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
-
--- Hey! Put lazy into the runtimepath for neovim!
 vim.opt.runtimepath:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
---vim.g.mapleader = " "
---vim.g.maplocalleader = "\\"
-
---setup lazy.nvim
 require("lazy").setup({
-	spec = {
-	-- import your plugins
-	{ import = "navy.plugins" },
---	{ import = "navy.local" },
-},
+    spec = "navy.plugins",
+    change_detection = { notify = false }
 })
 

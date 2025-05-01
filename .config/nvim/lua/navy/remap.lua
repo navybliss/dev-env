@@ -21,7 +21,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- yank to clipboard, yank entire line to clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]]) 
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- delete to blackhole
 vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
