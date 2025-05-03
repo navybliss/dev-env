@@ -15,7 +15,7 @@ EOF
 sudo apt -y install zsh
 hash -r
 # Make zsh the default shell
-sudo chsh -s "$(which zsh)"
+chsh -s "$(which zsh)"
 
 # Move existing .zshrc into ~/.config/zsh/
 if [ -f "$HOME/.zshrc" ]; then
