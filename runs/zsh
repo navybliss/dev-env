@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Create your Zsh config directory and cache directory
+mkdir -p "$HOME/.config/zsh"
+mkdir -p "$HOME/.cache/zsh"
+
+#Create (or overwrite) ~/.config/zsh/.zshenv with the ZDOTDIR export
+cat > "$HOME/.config/zsh/.zshenv" <<'EOF'
+# Tell Zsh to look for all its configs under ~/.config/zsh
+export ZDOTDIR="$HOME/.config/zsh"
+EOF
+
+sudo apt -y install zsh
+hash -r
+# Make zsh the default shell
+sudo chsh -s "$(which zsh)"
+
+# Move existing .zshrc into ~/.config/zsh/
+if [ -f "$HOME/.zshrc" ]; then
+    mv "$HOME/.zshrc" "$HOME/.config/zsh/.zshrc"
+    echo "Moved ~/.zshrc → ~/.config/zsh/.zshrc"
+fi
+
+# Make sure ~/.config/zsh/.zshrc exists so grep won’t fail
+ZSHRC="$HOME/.config/zsh/.zshrc"
+[ -f "$ZSHRC" ] || touch "$ZSHRC"
+
+# Clone zsh-syntax-highlighting if needed
+LOCAL_PLUGIN_DIR="$HOME/.config/zsh/zsh-syntax-highlighting"
+if [ ! -d "$LOCAL_PLUGIN_DIR" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$LOCAL_PLUGIN_DIR"
+    echo "Cloned zsh-syntax-highlighting → $LOCAL_PLUGIN_DIR"
+fi
+# Ensure your .zshrc sources the plugin (append if missing)
+ZSHRC="$HOME/.config/zsh/.zshrc"
+if ! grep -q "zsh-syntax-highlighting.zsh" "$ZSHRC"; then
+    cat >>"$ZSHRC" <<'EOF'
+
+# Load zsh-syntax-highlighting (must be last)
+source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+EOF
+    echo "Appended syntax-highlighting source to $ZSHRC"
+fi
+
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)
