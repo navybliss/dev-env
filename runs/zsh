@@ -4,7 +4,7 @@ set -euo pipefail
 
 sudo apt install -y zsh
 hash -r
-sudo chsh -s $(which zsh)
+chsh -s "$(which zsh)" "$USER"
 
 PLUGIN_DIR="$HOME/.config/zsh/zsh-syntax-highlighting"
 mkdir -p "$(dirname "$PLUGIN_DIR")"
