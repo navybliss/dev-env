@@ -69,5 +69,5 @@ copy_file .zshenv $USER_HOME
 
 #which one to source first?
 source $XDG_CONFIG_HOME/zsh/.zshrc
-source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
