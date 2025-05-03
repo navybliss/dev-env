@@ -1,7 +1,43 @@
 #!/usr/bin/env bash
 
-sudo apt -y update
-sudo apt -y install git ripgrep pavucontrol xclip jq tldr shutter python3-pip
+set -euo pipefail
 
-git clone git@github.com:junegunn/fzf.git $HOME/personal/fzf
-$HOME/personal/fzf/install
+FZF_DIR="$HOME/fzf"
+
+sudo apt -y install ripgrep pavucontrol xclip jq tldr shutter python3-pip
+
+if [ ! -d "$FZF_DIR" ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
+    "$FZF_DIR/install" --bin --no-update-rc
+else
+    echo "fzf already cloned at $FZF_DIR"
+fi
+
+#LINE_TO_APPEND='[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh'
+#mkdir -p "$HOME/personal"
+#
+#sudo apt -y install ripgrep pavucontrol xclip jq tldr shutter python3-pip
+#
+#FZF_DIR="$HOME/personal/fzf"
+#
+#if [ ! -d "$FZF_DIR" ]; then
+#    git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
+#    "$FZF_DIR/install --bin --no-update-rc"
+#else
+#    echo "fzf already installed in $FZF_DIR"
+#fi
+#
+## Move existing .zshrc into ~/.config/zsh/
+#if [ -f "$HOME/.zshrc" ]; then
+#    mv "$HOME/.zshrc" "$HOME/.config/zsh/.zshrc"
+#    echo "Moved ~/.zshrc → ~/.config/zsh/.zshrc"
+#fi
+#
+## Make sure ~/.config/zsh/.zshrc exists so grep won’t fail
+#ZSHRC="$HOME/.config/zsh/.zshrc"
+#[ -f "$ZSHRC" ] || touch "$ZSHRC"
+#
+## Check if ~/.config/zsh/.zshrc already sources fzf
+#if ! grep -qF "$LINE_TO_APPEND" "$ZSHRC"; then
+#    sed -i '/^$/!s/$/'"$LINE_TO_APPEND"'/' "$ZSHRC"
+#fi
