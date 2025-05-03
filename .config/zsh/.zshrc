@@ -62,6 +62,8 @@ bindkey '^e' edit-command-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export PATH="$PATH:$HOME/.local/scripts"
+
 alias vim='nvim'
 alias v='nvim'
 alias la='ls -a'
