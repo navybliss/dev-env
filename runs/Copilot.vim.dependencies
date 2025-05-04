@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install Node.js (and npm) using NodeSource repository
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # Check if Node.js and npm were installed correctly
