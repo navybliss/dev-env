@@ -71,4 +71,4 @@ alias la='ls -a'
 alias t='tmux'
 
 # Load zsh-syntax-highlighting; should be last.
-source $HOME/.config/zsh/zsh-syntax/zsh-syntax-highlighting.zsh 2>/dev/null
+source $HOME/.config/zsh/zsh-syntax-test/zsh-syntax-highlighting.zsh 2>/dev/null
