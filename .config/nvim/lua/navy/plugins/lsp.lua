@@ -1,4 +1,3 @@
-
 local root_files = {
     '.luarc.json',
     '.luarc.jsonc',
