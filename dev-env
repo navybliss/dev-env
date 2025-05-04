@@ -64,6 +64,7 @@ copy_file() {
 
 copy_dir .config $XDG_CONFIG_HOME
 copy_dir .local $USER_HOME/.local
+copy_dir .cache $USER_HOME/.cache
 copy_file .ready-tmux $USER_HOME
 copy_file .zshenv $USER_HOME
 
