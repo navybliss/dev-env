@@ -66,7 +66,6 @@ copy_dir .config $XDG_CONFIG_HOME
 copy_dir .local $USER_HOME/.local
 copy_file .ready-tmux $USER_HOME
 copy_file .zshenv $USER_HOME
-copy_dir zsh-syntax-test $XDG_CONFIG_HOME/zsh
 
 #which one to source first?
 source $XDG_CONFIG_HOME/zsh/.zshrc
